@@ -1,5 +1,5 @@
-# Backend Batch 11 QuikStart
-using ExpressJS and mySQL
+# Rest-Api
 
-# Package
-check package.json
+[![NPM](https://img.shields.io/badge/npm-v6.9.0-brightgreen)]()
+[![Node JS](https://img.shields.io/badge/node%20JS-v10.16.2-green)](https://nodejs.org/en/)
+[![Express](https://img.shields.io/badge/Express-V4.17.1-lightgrey)](https://expressjs.com/)

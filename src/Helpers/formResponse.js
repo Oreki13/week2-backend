@@ -27,7 +27,8 @@ module.exports = {
         } else {
             const formResponse = {
                 status,
-                massage: "Data Berhasil Diubah"
+                massage: "Data Berhasil Diubah",
+                result
             };
             res.json(formResponse);
         }
@@ -47,7 +48,7 @@ module.exports = {
                 status,
                 massage
             };
-            res.json(formResponse)
+            res.json(formResponse, 404)
         } else {
             const massage = 'Telah Dihapus ID ' + id
             const formResponse = {
