@@ -19,44 +19,6 @@ module.exports = {
             })
             .catch(error => console.log(error));
     },
-    postStore: (req, res) => {
-        const body = {
-            name: req.body.name,
-            type: req.body.type,
-            quantity: req.body.quantity,
-            branch: req.body.branch
-        };
-        modelStore
-            .postStore(body)
-            .then(response => {
-                formResponse.post(res, 200, response);
-            })
-            .catch(error => console.log(error));
-    },
-    deleteItem: (req, res) => {
-        const id = req.params.id;
-        modelStore
-            .deleteItem(id)
-            .then(response => {
-                formResponse.delete(res, 200, response, id);
-            })
-            .catch(error => console.log(error));
-    },
-    updateItem: (req, res) => {
-        const body = {
-            id: req.params.id,
-            name: req.body.name,
-            type: req.body.type,
-            quantity: req.body.quantity,
-            branch: req.body.branch
-        };
-        modelStore
-            .updateItem(body)
-            .then(response => {
-                formResponse.patch(res, 200, response);
-            })
-            .catch(error => console.log(error));
-    },
     sortByType: (req, res) => {
         const type = req.params.type;
         modelStore
