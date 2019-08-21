@@ -13,7 +13,7 @@
 - Search name, type, branch
 - PAGINATION
 
-## INSTALATION
+### INSTALATION
 
 - Set .env to your db setting
 
