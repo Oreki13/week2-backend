@@ -4,7 +4,7 @@
 [![Node JS](https://img.shields.io/badge/node%20JS-v10.16.2-green)](https://nodejs.org/en/)
 [![Express](https://img.shields.io/badge/Express-V4.17.1-lightgrey)](https://expressjs.com/)
 
-# Featured
+## Featured
 
 - GET
 - POST
@@ -13,7 +13,7 @@
 - Search name, type, branch
 - PAGINATION
 
-# INSTALATION
+## INSTALATION
 
 - Set .env to your db setting
 
