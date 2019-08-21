@@ -6,7 +6,7 @@ module.exports = {
         modelStore
             .getAllStore()
             .then(response => {
-                formResponse.succes(res, 200, response);
+                formResponse.get(res, 200, response);
             })
             .catch(error => console.log(error));
     },
@@ -15,7 +15,7 @@ module.exports = {
         modelStore
             .getStoreItem(name)
             .then(response => {
-                formResponse.succes(res, 200, response);
+                formResponse.get(res, 200, response);
             })
             .catch(error => console.log(error));
     },
@@ -29,7 +29,7 @@ module.exports = {
         modelStore
             .postStore(body)
             .then(response => {
-                formResponse.succes(res, 200, response);
+                formResponse.post(res, 200, response);
             })
             .catch(error => console.log(error));
     },
@@ -38,7 +38,7 @@ module.exports = {
         modelStore
             .deleteItem(id)
             .then(response => {
-                formResponse.succes(res, 200, response);
+                formResponse.delete(res, 200, response, id);
             })
             .catch(error => console.log(error));
     },
@@ -53,7 +53,7 @@ module.exports = {
         modelStore
             .updateItem(body)
             .then(response => {
-                formResponse.put(res, 200, response);
+                formResponse.patch(res, 200, response);
             })
             .catch(error => console.log(error));
     },
@@ -62,7 +62,7 @@ module.exports = {
         modelStore
             .sortByType(type)
             .then(response => {
-                formResponse.succes(res, 200, response);
+                formResponse.get(res, 200, response);
             })
             .catch(error => console.log(error));
     },
@@ -71,7 +71,7 @@ module.exports = {
         modelStore
             .sortByBranch(branch)
             .then(response => {
-                formResponse.succes(res, 200, response);
+                formResponse.get(res, 200, response);
             })
             .catch(error => console.log(error));
     }
