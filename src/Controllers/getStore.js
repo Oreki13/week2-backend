@@ -23,6 +23,12 @@ module.exports = {
             })
             .catch(error => console.log(error));
     },
+    getStoreById: (req, res) => {
+        const id = req.params.id;
+        modelStore.getStoreById(id).then(response => {
+            formResponse.get(res, 200, response)
+        }).catch(error => console.log(error))
+    },
     sortByType: (req, res) => {
         const type = req.params.type;
         modelStore

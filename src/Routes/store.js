@@ -8,10 +8,12 @@ const router = express.Router();
 
 router.get("/", getStore.getAllStore);
 router.get("/:name", getStore.getStoreItem);
+router.get("/id/:id", getStore.getStoreById);
+router.get("/type/:type", getStore.sortByType);
+router.get("/branch/:branch", getStore.sortByBranch);
 router.post("/", postStore.postStore);
 router.delete("/:id", deleteStore.deleteItem);
 router.patch("/:id", updateStore.updateItem);
-router.get("/type/:type", getStore.sortByType);
-router.get("/branch/:branch", getStore.sortByBranch);
+
 
 module.exports = router;

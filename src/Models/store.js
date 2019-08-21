@@ -2,13 +2,13 @@ const db = require("../Config/dbConnect");
 module.exports = {
     getAllStore: param => {
         return new Promise((resole, reject) => {
-            let queryall = "SELECT * FROM store"
-            let querpage = "SELECT * FROM store LIMIT ? OFFSET ?"
+            let queryAll = "SELECT * FROM store"
+            let querPage = "SELECT * FROM store LIMIT ? OFFSET ?"
             let limit = param.limit * 1
             let offset = (param.page - 1) * limit
             let sql = [limit, offset]
             if (param.limit && param.page) {
-                db.query(querpage, sql, (error, response) => {
+                db.query(querPage, sql, (error, response) => {
                     if (!error) {
                         resole(response);
                     } else {
@@ -18,7 +18,7 @@ module.exports = {
 
 
             } else {
-                db.query(queryall, (error, response) => {
+                db.query(queryAll, (error, response) => {
                     if (!error) {
                         resole(response)
                     } else {
@@ -43,6 +43,17 @@ module.exports = {
                 }
             );
         });
+    },
+    getStoreById: id => {
+        return new Promise((resolve, reject) => {
+            db.query('SELECT * FROM store WHERE id=?', [id], (error, response) => {
+                if (!error) {
+                    resolve(response)
+                } else {
+                    reject(error)
+                }
+            })
+        })
     },
     postStore: body => {
         return new Promise((resolve, reject) => {
