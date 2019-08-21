@@ -7,8 +7,6 @@ module.exports = {
             limit: req.query.limit,
             page: req.query.page
         }
-        console.log(param);
-
         modelStore
             .getAllStore(param)
             .then(response => {

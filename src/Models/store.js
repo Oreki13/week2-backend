@@ -4,8 +4,8 @@ module.exports = {
         return new Promise((resole, reject) => {
             let queryall = "SELECT * FROM store"
             let querpage = "SELECT * FROM store LIMIT ? OFFSET ?"
-            let offset = param.page - 1 * 5
             let limit = param.limit * 1
+            let offset = (param.page - 1) * limit
             let sql = [limit, offset]
             if (param.limit && param.page) {
                 db.query(querpage, sql, (error, response) => {
