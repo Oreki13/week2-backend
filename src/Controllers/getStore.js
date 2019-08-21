@@ -3,8 +3,14 @@ const formResponse = require("../Helpers/formResponse");
 
 module.exports = {
     getAllStore: (req, res) => {
+        const param = {
+            limit: req.query.limit,
+            page: req.query.page
+        }
+        console.log(param);
+
         modelStore
-            .getAllStore()
+            .getAllStore(param)
             .then(response => {
                 formResponse.get(res, 200, response);
             })
