@@ -26,11 +26,8 @@ PORT = 8080
 NODE_ENV = 'Devploment'
 ```
 
-# HOW TO USE
+- Start Server
 
-- Open terminal in directory
-- run
-  ```
-  $ npm start
-  ```
--
+```
+$ npm start
+```
