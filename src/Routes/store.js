@@ -1,19 +1,17 @@
 const express = require("express");
-const getStore = require("../Controllers/getStore");
-const postStore = require("../Controllers/postStore");
-const updateStore = require("../Controllers/updateStore");
-const deleteStore = require("../Controllers/deleteStore");
+
+const getStore = require("../Controllers/store");
 
 const router = express.Router();
 
-router.get("/", getStore.getAllStore);
-router.get("/:name", getStore.getStoreItem);
-router.get("/id/:id", getStore.getStoreById);
-router.get("/type/:type", getStore.sortByType);
-router.get("/branch/:branch", getStore.sortByBranch);
-router.post("/", postStore.postStore);
-router.delete("/:id", deleteStore.deleteItem);
-router.patch("/:id", updateStore.updateItem);
+router.get("/:page", getStore.getAllStore);
+router.get("/search/", getStore.getStoreItem);
+router.get("/page/", getStore.getStoreById);
+
+
+router.post("/", getStore.postStore);
+router.delete("/:id", getStore.deleteItem);
+router.patch("/:id", getStore.updateItem);
 
 
 module.exports = router;

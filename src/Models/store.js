@@ -2,30 +2,73 @@ const db = require("../Config/dbConnect");
 module.exports = {
     getAllStore: param => {
         return new Promise((resole, reject) => {
-            let queryAll = "SELECT * FROM store"
-            let querPage = "SELECT * FROM store LIMIT ? OFFSET ?"
-            let limit = param.limit * 1
-            let offset = (param.page - 1) * limit
-            let sql = [limit, offset]
-            if (param.limit && param.page) {
-                db.query(querPage, sql, (error, response) => {
-                    if (!error) {
-                        resole(response);
-                    } else {
-                        reject(error);
+            let limit = param.limit * 1;
+            let offset = (param.page - 1) * limit;
+            console.log(param.name);
+
+            if (param.id) {
+                db.query(
+                    "SELECT * FROM store WHERE id LIKE ? LIMIT ? OFFSET ?",
+                    [param.id, limit, offset],
+                    (error, response) => {
+                        if (!error) {
+                            resole(response);
+                        } else {
+                            reject(error);
+                        }
                     }
-                });
+                );
+            } else if (param.name) {
+                db.query(
+                    "SELECT * FROM store WHERE name LIKE ? LIMIT ? OFFSET ?",
 
+                    [param.name, limit, offset],
+                    (error, response) => {
+                        if (!error) {
+                            resole(response);
+                        } else {
+                            reject(error);
+                        }
+                    }
+                );
+            } else if (param.type) {
+                db.query(
+                    "SELECT * FROM store WHERE type LIKE ? LIMIT ? OFFSET ?",
 
+                    [param.type, limit, offset],
+                    (error, response) => {
+                        if (!error) {
+                            resole(response);
+                        } else {
+                            reject(error);
+                        }
+                    }
+                );
+            } else if (param.branch) {
+                db.query(
+                    "SELECT * FROM store WHERE branch LIKE ? LIMIT ? OFFSET ?",
+
+                    [param.branch, limit, offset],
+                    (error, response) => {
+                        if (!error) {
+                            resole(response);
+                        } else {
+                            reject(error);
+                        }
+                    }
+                );
             } else {
-                db.query(queryAll, (error, response) => {
-                    if (!error) {
-                        resole(response)
-                    } else {
-                        reject(error)
-                    }
-                })
+                db.query(
+                    "SELECT * FROM store LIMIT ? OFFSET ? ", [limit, offset],
 
+                    (error, response) => {
+                        if (!error) {
+                            resole(response);
+                        } else {
+                            reject(error);
+                        }
+                    }
+                );
             }
         });
     },
@@ -46,28 +89,24 @@ module.exports = {
     },
     getStoreById: id => {
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM store WHERE id=?', [id], (error, response) => {
+            db.query("SELECT * FROM store WHERE id=?", [id], (error, response) => {
                 if (!error) {
-                    resolve(response)
+                    resolve(response);
                 } else {
-                    reject(error)
+                    reject(error);
                 }
-            })
-        })
+            });
+        });
     },
     postStore: body => {
         return new Promise((resolve, reject) => {
-            db.query(
-                "INSERT INTO store SET name=?, type=?, quantity=?, branch=?",
-                [body.name, body.type, body.quantity, body.branch],
-                (error, response) => {
-                    if (!error) {
-                        resolve(response);
-                    } else {
-                        reject(error);
-                    }
+            db.query("INSERT INTO store SET ?", [body.data], (error, response) => {
+                if (!error) {
+                    resolve(response);
+                } else {
+                    reject(error);
                 }
-            );
+            });
         });
     },
     deleteItem: id => {
@@ -84,38 +123,8 @@ module.exports = {
     updateItem: body => {
         return new Promise((resolve, reject) => {
             db.query(
-                "UPDATE store SET name=?, type=?, quantity=?, branch=? WHERE id=?",
-                [body.name, body.type, body.quantity, body.branch, body.id],
-                (error, response) => {
-                    if (!error) {
-                        resolve(response);
-                    } else {
-                        reject(error);
-                    }
-                }
-            );
-        });
-    },
-    sortByType: type => {
-        return new Promise((resolve, reject) => {
-            db.query(
-                "SELECT * FROM store WHERE type=?",
-                [type],
-                (error, response) => {
-                    if (!error) {
-                        resolve(response);
-                    } else {
-                        reject(error);
-                    }
-                }
-            );
-        });
-    },
-    sortByBranch: branch => {
-        return new Promise((resolve, reject) => {
-            db.query(
-                "SELECT * FROM store WHERE branch=?",
-                [branch],
+                "UPDATE store SET ? WHERE id=?",
+                [body.data, body.id],
                 (error, response) => {
                     if (!error) {
                         resolve(response);

@@ -21,6 +21,6 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-app.use('/api', rootRouter)
+app.use('/', rootRouter)
 
 module.exports = app;

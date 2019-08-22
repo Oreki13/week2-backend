@@ -1,5 +1,5 @@
 module.exports = {
-    get: (res, status, result) => {
+    get: (res, status, result, param) => {
         if (result.length == 0) {
             const formResponse = {
                 status: 404,
@@ -8,9 +8,11 @@ module.exports = {
             res.json(formResponse, 404)
         } else {
             const resultLength = 'Data Ditemukan ' + result.length
+
             const formResponse = {
                 status,
                 massage: resultLength,
+                Page: param.page,
                 result
             };
             res.json(formResponse);
@@ -18,10 +20,12 @@ module.exports = {
         }
     },
     patch: (res, status, result) => {
+
         if (result.affectedRows !== 1) {
             const formResponse = {
-                status: "Not Found Param",
-                res: "not Found"
+                status: "ID Tidak ditemukan",
+                result
+
             };
             res.json(formResponse, 403);
         } else {
